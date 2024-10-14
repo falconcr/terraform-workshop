@@ -1,0 +1,26 @@
+---
+- name: Install NGINX on web servers
+  hosts: web_servers
+  become: yes
+
+  tasks:
+    - name: Ensure pip is installed
+      apt:
+        name: python3-pip
+        state: present
+      become: yes
+
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+
+    - name: Install NGINX
+      apt:
+        name: nginx
+        state: present
+
+    - name: Start and enable NGINX service
+      service:
+        name: nginx
+        state: started
+        enabled: yes

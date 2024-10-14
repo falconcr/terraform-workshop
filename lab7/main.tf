@@ -79,6 +79,7 @@ resource "aws_security_group" "sg_22_80" {
 }
 
 resource "aws_instance" "web" {
+  count = 2
   ami                         = data.aws_ami.ubuntu.id
   instance_type               = "t2.micro"
   subnet_id                   = aws_subnet.subnet_public.id
@@ -87,10 +88,10 @@ resource "aws_instance" "web" {
   user_data                   = file("./scripts/add-ssh-web-app.yaml")
 
   tags = {
-    Name = "Learn-CloudInit"
+    Name = "Learn-CloudInit ${count.index}"
   }
 }
 
 output "public_ip" {
-  value = aws_instance.web.public_ip
+  value = aws_instance.web[*].public_ip
 }
