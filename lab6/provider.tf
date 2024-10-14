@@ -6,14 +6,6 @@ terraform {
     }
   }
 
-  backend "s3" {
-    bucket         = "terraformworkshop"
-    key            = "terraform.tfstate"
-    region         = "us-east-1"
-    dynamodb_table = "mi-tabla-dynamodb"
-    encrypt        = true
-  }
-
   required_version = ">= 1.2.0"
 }
 
