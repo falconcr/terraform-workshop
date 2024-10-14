@@ -1,3 +1,3 @@
 [web_servers]
-34.239.178.125 ansible_python_interpreter=/usr/bin/python3  # Reemplaza con la IP de la primera instancia EC2
-98.84.30.139  ansible_python_interpreter=/usr/bin/python3   # Reemplaza con la IP de la segunda instancia EC2
+3.91.94.24 ansible_python_interpreter=/usr/bin/python3  # Reemplaza con la IP de la primera instancia EC2
+3.93.43.56  ansible_python_interpreter=/usr/bin/python3   # Reemplaza con la IP de la segunda instancia EC2
