@@ -1,0 +1,9 @@
+---
+- name: Install NGINX on Unix systems
+  hosts: all
+  become: true
+  vars_files:
+    - "../vars/{{ env }}.yml"
+
+  roles:
+    - nginx

@@ -1,0 +1,10 @@
+nginx_install_command:
+  ubuntu: "apt-get install -y {{ nginx_package_name }}"
+  debian: "apt-get install -y {{ nginx_package_name }}"
+  arch: "pacman -S --noconfirm {{ nginx_package_name }}"
+
+nginx_service_name: "nginx"
+
+# Variables for the NGINX configuration
+nginx_server_name: "localhost"
+nginx_document_root: "/var/www/html"

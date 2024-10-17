@@ -1,0 +1,44 @@
+---
+- name: Install prerequisites for apt over HTTPS
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+  when: ansible_os_family == "Debian"
+
+- name: Download NGINX signing key
+  ansible.builtin.get_url:
+    url: https://nginx.org/keys/nginx_signing.key
+    dest: /tmp/nginx_signing.key
+  when: ansible_os_family == "Debian"
+
+- name: Add NGINX signing key
+  ansible.builtin.command: apt-key add /tmp/nginx_signing.key
+  when: ansible_os_family == "Debian"
+
+- name: Add NGINX official repository
+  ansible.builtin.apt_repository:
+    repo: "deb https://nginx.org/packages/{{ ansible_distribution | lower }}/ {{ ansible_distribution_release }} nginx"
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Update apt cache
+  ansible.builtin.apt:
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+
+- name: Install NGINX
+  ansible.builtin.apt:
+    name: "{{ nginx_package_name }}"
+    state: present
+  when: ansible_os_family == "Debian"
+
+- name: Install NGINX on Arch
+  ansible.builtin.pacman:
+    name: "{{ nginx_package_name }}"
+    state: present
+  when: ansible_os_family == "Archlinux"

@@ -1,0 +1,2 @@
+[ubuntu]
+development-server ansible_host=18.234.53.236 ansible_user=terraform ansible_python_interpreter=/usr/bin/python3

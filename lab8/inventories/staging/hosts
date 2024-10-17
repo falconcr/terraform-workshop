@@ -1,0 +1,2 @@
+[ubuntu]
+staging-server ansible_host=34.207.206.16 ansible_user=terraform ansible_python_interpreter=/usr/bin/python3
